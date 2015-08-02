@@ -1,6 +1,6 @@
 @extends('blog')
 
-           @section('content')
+@section('content')
 
-<a>asdasdsaasdjsadsadjoiojisdasajdoi</a>
-           @endsection
+
+@endsection

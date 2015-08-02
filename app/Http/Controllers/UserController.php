@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use Redirect;
+use Session;
 use DB;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->beforeFilter('@find',['only' => ['edit','update','destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
@@ -53,6 +61,13 @@ class UserController extends Controller
     {
         //
     }
+    public function find($id)
+    {
+        // $this->user = User::find($route->getParameter('user'));
+        // return $this->user;
+        //$user = User::find($id);
+       // return view('user.edit', ['user'=>$this->user]);
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -62,7 +77,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -74,7 +90,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        var_dump($user);
     }
 
     /**
